@@ -12,7 +12,7 @@ Oral(R)Bench–SAG 汇集了 **OralBench** 基准构建材料与 **Oral-SAG**（
 
 - **结构化基准设计：** 四个知识层级、十个评测维度和十个口腔医学亚专科。
 - **可检查的答案修订流程：** 包含决策初稿、安全门控、完整性门控和最终决策四个阶段。
-- **可复用的评测材料：** 包含按题型区分的基线提示词、明确的门控字段和 OralBench Rubric Matrix v3 评分量表。
+- **可复用的评测材料：** 包含统一的答题要求、明确的门控字段和 OralBench Rubric Matrix v3 评分量表。
 - **逐题模型响应：** 24 个 JSONL 文件，共 61,252 条响应记录槽位，覆盖原始基线、原始 Oral-SAG 和补充本地 4B 实验。
 
 ## 基准设计
@@ -38,7 +38,7 @@ Oral-SAG 将答案生成与两个专项审核角色分开。两个门控均接�
 
 ```mermaid
 flowchart LR
-    Q[题目与格式元数据] --> D[决策初稿]
+    Q[题目与答案选项] --> D[决策初稿]
     D --> S[安全门控]
     D --> C[完整性门控]
     Q --> S
@@ -57,9 +57,9 @@ flowchart LR
 | 完整性门控 | 识别已覆盖及缺失的核心要求、顺序约束和不必要的扩展 | 包含覆盖要求的结构化 JSON |
 | 最终决策 | 根据门控反馈修订答案，保留相关且安全的内容 | 修订后的答案 |
 
-生成阶段使用题目与格式元数据，评测阶段使用题目、参考答案和模型响应。上图展示信息流。本地 4B 配置记录的执行顺序为：初稿 → 安全门控 → 完整性门控 → 最终决策。
+生成阶段使用题目与答案选项，基线与 Oral-SAG 共用统一的答题要求；评测阶段使用题目、参考答案和模型响应。上图展示信息流。本地 4B 配置记录的执行顺序为：初稿 → 安全门控 → 完整性门控 → 最终决策。
 
-完整提示词和阶段函数见 [effective_v3_instructions.json](03_OralSAG_roles/effective_v3_instructions.json) 与 [sag_stage_functions.py](03_OralSAG_roles/sag_stage_functions.py)。
+完整提示词和阶段函数见 [effective_instructions.json](03_OralSAG_roles/effective_instructions.json) 与 [sag_stage_functions.py](03_OralSAG_roles/sag_stage_functions.py)。
 
 ## 仓库结构
 
@@ -96,7 +96,7 @@ flowchart LR
 | --- | --- |
 | [01_construction](01_construction/) | 来源提取与检索脚本、生成与审核智能体组、题目 Schema、14 个技能定义及归档依赖文件 |
 | [02_evaluation_prompts](02_evaluation_prompts/) | 基线提示词模板与构建函数、归档客户端及裁判输入构建逻辑 |
-| [03_OralSAG_roles](03_OralSAG_roles/) | v3 有效角色指令、阶段函数、门控归一化及 API 调用代码 |
+| [03_OralSAG_roles](03_OralSAG_roles/) | 角色指令、阶段函数、门控归一化及 API 调用代码 |
 | [04_gate_schemas](04_gate_schemas/) | 原始门控预期输出 Schema，以及补充本地 4B 门控 Schema 与校验函数 |
 | [05_model_configurations](05_model_configurations/) | 原始 SAG 设置、冻结的本地 4B 设置和本地模型元数据 |
 | [06_scoring_rubrics](06_scoring_rubrics/) | Rubric Matrix v3、裁判提示词构建与评分解析 |
@@ -172,7 +172,7 @@ print("\nUSER:\n" + user)
 PY
 ```
 
-对于选择题，`options` 可使用由选项字符串组成的 JSON 编码列表。元认知题型使用单独的模板，要求输出置信度及不确定性信息。归档原文见 [baseline_templates.json](02_evaluation_prompts/baseline_templates.json)。
+对于选择题，`options` 可使用由选项字符串组成的 JSON 编码列表。所有题型共用相同的答题要求；题干明确要求置信度时，回答中需给出置信度。归档原文见 [baseline_templates.json](02_evaluation_prompts/baseline_templates.json)。
 
 ## 实验配置
 

@@ -1,7 +1,5 @@
-"""Shared model-visible input contract for new baseline and Oral-SAG runs.
+"""Shared model-visible input contract for baseline and Oral-SAG.
 
-This protocol supersedes the generation builders at commit 82502e1. It does
-not describe or retroactively change the inputs of archived experiments.
 Benchmark metadata stays in local records and never selects a prompt variant.
 """
 
@@ -116,7 +114,7 @@ def serialize_context(payload: Mapping[str, Any]) -> str:
 def build_baseline_prompts(
     question: str, question_format: str = "open-ended", options: Any = "",
 ) -> tuple[str, str]:
-    """Keep the old call signature; question_format is deliberately ignored."""
+    """Build a shared prompt; question_format does not affect the request."""
     return BASELINE_SYSTEM, serialize_context(
         generation_context({"question": question, "options": options})
     )

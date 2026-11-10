@@ -12,7 +12,7 @@ The supplied code and records use the names `OralBench`, `Oral-SAG`, and `dental
 
 - **Structured benchmark design:** four knowledge levels, ten assessment dimensions, and ten dental subspecialties.
 - **Inspectable answer refinement:** a decision draft, a safety gate, a completeness gate, and a final decision stage.
-- **Reusable evaluation materials:** format-specific baseline prompts, explicit gate fields, and the OralBench Rubric Matrix v3.
+- **Reusable evaluation materials:** shared answer requirements, explicit gate fields, and the OralBench Rubric Matrix v3.
 - **Item-level response access:** 24 JSONL files containing 61,252 response slots across the original baseline, original Oral-SAG, and supplementary local 4B experiments.
 
 ## Benchmark design
@@ -38,7 +38,7 @@ Oral-SAG separates answer generation from two focused review roles. Both gates r
 
 ```mermaid
 flowchart LR
-    Q[Question and format metadata] --> D[Decision draft]
+    Q[Question and answer options] --> D[Decision draft]
     D --> S[Safety gate]
     D --> C[Completeness gate]
     Q --> S
@@ -57,9 +57,9 @@ flowchart LR
 | Completeness gate | Identify covered and missing core requirements, sequence constraints, and unnecessary expansion | Structured JSON with coverage requirements |
 | Final decision | Incorporate the gate feedback while preserving relevant, safe content | Revised answer |
 
-The workflow uses the question and format metadata during generation. Evaluation uses the question, reference answer, and model response. The diagram represents information flow; the local 4B configuration records the execution order as draft → safety gate → completeness gate → final decision.
+The workflow uses the question and answer options during generation, with shared answer requirements for the baseline and Oral-SAG arms. Evaluation uses the question, reference answer, and model response. The diagram represents information flow; the local 4B configuration records the execution order as draft → safety gate → completeness gate → final decision.
 
-The exact prompts and stage functions are available in [effective_v3_instructions.json](03_OralSAG_roles/effective_v3_instructions.json) and [sag_stage_functions.py](03_OralSAG_roles/sag_stage_functions.py).
+The exact prompts and stage functions are available in [effective_instructions.json](03_OralSAG_roles/effective_instructions.json) and [sag_stage_functions.py](03_OralSAG_roles/sag_stage_functions.py).
 
 ## Repository structure
 
@@ -96,7 +96,7 @@ The exact prompts and stage functions are available in [effective_v3_instruction
 | --- | --- |
 | [01_construction](01_construction/) | Source extraction and retrieval scripts, generation and review crews, item schemas, 14 skill definitions, and archived dependency files |
 | [02_evaluation_prompts](02_evaluation_prompts/) | Baseline prompt templates and builders, an archived client, and judge input construction |
-| [03_OralSAG_roles](03_OralSAG_roles/) | Effective v3 role instructions, stage functions, gate normalization, and API transport code |
+| [03_OralSAG_roles](03_OralSAG_roles/) | Role instructions, stage functions, gate normalization, and API transport code |
 | [04_gate_schemas](04_gate_schemas/) | Original requested-output schemas and supplementary local 4B gate schemas and validation functions |
 | [05_model_configurations](05_model_configurations/) | Original SAG settings, frozen local 4B settings, and local model metadata |
 | [06_scoring_rubrics](06_scoring_rubrics/) | Rubric Matrix v3, judge prompt construction, and score parsing |
@@ -172,7 +172,7 @@ print("\nUSER:\n" + user)
 PY
 ```
 
-For multiple-choice input, `options` can be a JSON-encoded list of option strings. Metacognitive formats use a separate template that requests confidence and uncertainty information. See [baseline_templates.json](02_evaluation_prompts/baseline_templates.json) for the archived wording.
+For multiple-choice input, `options` can be a JSON-encoded list of option strings. All question formats use the same answer requirements; confidence is requested when explicitly required by the question. See [baseline_templates.json](02_evaluation_prompts/baseline_templates.json) for the archived wording.
 
 ## Experimental configurations
 

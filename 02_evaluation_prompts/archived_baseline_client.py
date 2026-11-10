@@ -1,7 +1,4 @@
-"""MultiModelInferenceTool — Dispatch using the current label-free protocol.
-
-Transport is adapted from the archived client; prompt construction is corrected
-for new runs and does not describe the inputs of historical responses.
+"""MultiModelInferenceTool — High-concurrency model dispatch.
 
 Supports:
 - Loading model configs from models.json (keys + base_url + model type)

@@ -1,8 +1,6 @@
 {
   "generation_protocol": "label-free-generation-v1",
   "effective_date": "2026-11-11",
-  "supersedes_code_commit": "82502e112039f014351c1e7c715dc50833bf730f",
-  "applies_to": "New runs using the corrected generation builders; archived responses are unchanged.",
   "model_visible_item_fields": [
     "question",
     "options"
@@ -19,14 +17,8 @@
   ],
   "answer_requirements": "Answer every explicit task in the question. For a question that asks you to select one of the supplied lettered options, return only the selected option letter. Otherwise, return concise bullet points, one key conclusion or action per bullet, with enough points to cover the task. Preserve the order of clinical actions when the question requires a sequence. When the question explicitly requests confidence, give confidence (0-100%) in the first bullet. State relevant uncertainty and limitations. Do not include your reasoning process, invented patient details, citations, exact doses, or unsupported thresholds.",
   "answer_requirements_source": "generation_protocol.py::ANSWER_REQUIREMENTS",
-  "role_instructions": "03_OralSAG_roles/label_free_instructions.json",
+  "role_instructions": "03_OralSAG_roles/effective_instructions.json",
   "gate_input": "question, optional options, and decision_draft",
   "final_input": "question, optional options, decision_draft, and whitelisted gate feedback",
-  "metadata_dependent_prompt_selection": false,
-  "historical_role_instructions": "03_OralSAG_roles/effective_v3_instructions.json",
-  "historical_run_configurations": [
-    "05_model_configurations/original_sag.json",
-    "05_model_configurations/local4b.json"
-  ],
-  "historical_response_files_modified": false
+  "metadata_dependent_prompt_selection": false
 }

@@ -1,0 +1,10 @@
+{
+  "source_code_commit": "82502e112039f014351c1e7c715dc50833bf730f",
+  "role_instructions": "recorded_v3_instructions.json",
+  "role_instructions_sha256": "630fd9e598ea65d5236ee484127b07ad8ffffd397fe31d99e2313882928fbf12",
+  "response_inventory": "../response_file_inventory.csv",
+  "run_configurations": [
+    "../../05_model_configurations/original_sag.json",
+    "../../05_model_configurations/local4b.json"
+  ]
+}

@@ -14,8 +14,7 @@ from generation_protocol import (
 )
 
 STRATEGY_NAME = 'SAG-' + PROTOCOL_VERSION
-# The earlier effective_v3_instructions.json remains an archival record.
-globals().update(json.loads(Path(__file__).with_name('label_free_instructions.json').read_text()))
+globals().update(json.loads(Path(__file__).with_name('effective_instructions.json').read_text()))
 DECISION_DRAFT_SYSTEM += "\n\n" + ANSWER_REQUIREMENTS
 FINAL_DECISION_SYSTEM += "\n\n" + ANSWER_REQUIREMENTS
 
