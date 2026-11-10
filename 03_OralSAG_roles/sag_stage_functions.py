@@ -1,5 +1,5 @@
 from __future__ import annotations
-import argparse, json, os, re, threading, time
+import argparse, json, os, re, sys, threading, time
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -7,8 +7,17 @@ import requests
 
 MODEL = os.environ.get('ORALSAG_MODEL', 'qwen3.5-27b')
 BASE_URL = os.environ.get('ORALSAG_BASE_URL', 'https://yungpt.com/v1')
-STRATEGY_NAME = 'SAG-v3-completeness'
-globals().update(json.loads(Path(__file__).with_name('effective_v3_instructions.json').read_text()))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from generation_protocol import (
+    ANSWER_REQUIREMENTS, PROTOCOL_VERSION, gate_feedback, generation_context,
+    serialize_context, validate_generation_request,
+)
+
+STRATEGY_NAME = 'SAG-' + PROTOCOL_VERSION
+# The earlier effective_v3_instructions.json remains an archival record.
+globals().update(json.loads(Path(__file__).with_name('label_free_instructions.json').read_text()))
+DECISION_DRAFT_SYSTEM += "\n\n" + ANSWER_REQUIREMENTS
+FINAL_DECISION_SYSTEM += "\n\n" + ANSWER_REQUIREMENTS
 
 class KeyPool:
     def __init__(self, keys: list[str], concurrency_per_key: int):
@@ -48,6 +57,7 @@ def qwen_chat(
     retries: int = 6,
 ) -> dict[str, Any]:
     """Call the Yungpt-compatible endpoint and return content plus audit data."""
+    validate_generation_request(system, user)
     endpoint = BASE_URL.rstrip("/") + "/chat/completions"
     last_error = ""
     started = time.perf_counter()
@@ -166,32 +176,18 @@ def normalize_gate(gate: str, payload: dict):
         "confidence": payload.get("confidence", "low"),
     }
 
-def format_requirement(item):
-    question_format = item.get("question_format", "open-ended")
-    level = item.get("level", "")
-    if question_format in {"metacognitive-open", "metacognitive-analysis"}:
-        return "First bullet: confidence 0-100%. Cover uncertainty and limitations; preserve all explicit tasks."
-    if level == "L3":
-        return "Use 6-12 concise bullets and cover the complete clinical decision sequence."
-    return "Use enough concise bullets to cover every explicit task, normally 4-10 bullets."
+def format_requirement(item=None):
+    """The same answer requirements apply to every item and generation arm."""
+    return ANSWER_REQUIREMENTS
 
 def item_prompt(item: dict[str, Any]) -> str:
-    return json.dumps({
-        "question_id": item["question_id"],
-        "level": item["level"],
-        "question_format": item.get("question_format", "open-ended"),
-        "format_requirement": format_requirement(item),
-        "question": item["question"],
-    }, ensure_ascii=False, indent=2)
+    return serialize_context(generation_context(item))
 
 def gate_prompt(item: dict[str, Any], draft: dict[str, Any]) -> str:
-    return json.dumps({
-        "question_id": item["question_id"],
-        "level": item["level"],
-        "question_format": item.get("question_format", "open-ended"),
-        "question": item["question"],
+    return serialize_context({
+        **generation_context(item),
         "decision_draft": draft.get("response", ""),
-    }, ensure_ascii=False, indent=2)
+    })
 
 def final_prompt(
     item: dict[str, Any],
@@ -199,16 +195,12 @@ def final_prompt(
     safety: dict[str, Any],
     completeness: dict[str, Any],
 ) -> str:
-    return json.dumps({
-        "question_id": item["question_id"],
-        "level": item["level"],
-        "question_format": item.get("question_format", "open-ended"),
-        "format_requirement": format_requirement(item),
-        "question": item["question"],
+    return serialize_context({
+        **generation_context(item),
         "decision_draft": draft.get("response", ""),
-        "safety_gate": safety.get("result", {}),
-        "completeness_gate": completeness.get("result", {}),
-    }, ensure_ascii=False, indent=2)
+        "safety_gate": gate_feedback("safety_gate", safety.get("result", {})),
+        "completeness_gate": gate_feedback("completeness_gate", completeness.get("result", {})),
+    })
 
 def call_with_content_retry(
     key_pool: common.KeyPool,
@@ -234,8 +226,9 @@ def run_decision_draft(item: dict[str, Any], key_pool: common.KeyPool, args: arg
     started = time.perf_counter()
     call = call_with_content_retry(key_pool, DECISION_DRAFT_SYSTEM, item_prompt(item), args, 1200)
     return {
-        "question_id": item["question_id"],
-        "level": item["level"],
+        "question_id": item.get("question_id", ""),
+        "generation_protocol": PROTOCOL_VERSION,
+        "level": item.get("level", ""),
         "agent": "decision_draft",
         "response": call.get("content", ""),
         "agent_call": {key: value for key, value in call.items() if key != "raw"},
@@ -267,8 +260,9 @@ def run_gate(
         except (ValueError, TypeError, json.JSONDecodeError) as exc:
             error = f"{type(exc).__name__}: {exc}"
     return {
-        "question_id": item["question_id"],
-        "level": item["level"],
+        "question_id": item.get("question_id", ""),
+        "generation_protocol": PROTOCOL_VERSION,
+        "level": item.get("level", ""),
         "agent": f"{gate}_gate",
         "result": parsed,
         "raw_output": call.get("content", ""),
@@ -294,8 +288,9 @@ def run_final_decision(
         1400,
     )
     return {
-        "question_id": item["question_id"],
-        "level": item["level"],
+        "question_id": item.get("question_id", ""),
+        "generation_protocol": PROTOCOL_VERSION,
+        "level": item.get("level", ""),
         "model": MODEL,
         "strategy": STRATEGY_NAME,
         "response": call.get("content", ""),

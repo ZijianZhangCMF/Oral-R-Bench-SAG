@@ -1,4 +1,7 @@
-"""MultiModelInferenceTool — High-concurrency dispatch to multiple LLMs.
+"""MultiModelInferenceTool — Dispatch using the current label-free protocol.
+
+Transport is adapted from the archived client; prompt construction is corrected
+for new runs and does not describe the inputs of historical responses.
 
 Supports:
 - Loading model configs from models.json (keys + base_url + model type)
@@ -11,6 +14,7 @@ Supports:
 import json
 import logging
 import os
+import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -19,6 +23,11 @@ from typing import Type
 
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from generation_protocol import (
+    PROTOCOL_VERSION, build_baseline_prompts, validate_generation_request,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -93,6 +102,7 @@ def _call_model(
     resolved_url = base_url or config.get("base_url", "") or os.getenv("OPENAI_BASE_URL", "")
 
     system_prompt, user_prompt = _build_prompts(question, question_format, options)
+    validate_generation_request(system_prompt, user_prompt)
 
     last_error = ""
     for attempt in range(max_retries):
@@ -123,6 +133,7 @@ def _call_model(
 
             result = {
                 "question_id": question_id,
+                "generation_protocol": PROTOCOL_VERSION,
                 "model": model_name,
                 "response": content,
                 "finish_reason": response.choices[0].finish_reason,
@@ -147,46 +158,11 @@ def _call_model(
         finally:
             sem.release()
 
-    return {"question_id": question_id, "model": model_name, "error": last_error, "retries": max_retries}
+    return {"question_id": question_id, "model": model_name, "error": last_error, "retries": max_retries, "generation_protocol": PROTOCOL_VERSION}
 
 
 def _build_prompts(question: str, question_format: str, options: str) -> tuple[str, str]:
-    if question_format == "multiple-choice":
-        system = (
-            "You are a dental medicine specialist taking an exam. "
-            "Output ONLY the correct option letter (A, B, C, or D) as the very first character of your response. "
-            "Do NOT include any explanation, reasoning, or additional text. "
-            "Example response: B"
-        )
-        opts = ""
-        if options:
-            try:
-                opt_list = json.loads(options)
-                opts = "\n".join(opt_list)
-            except (json.JSONDecodeError, TypeError):
-                opts = options
-        user = f"{question}\n\n{opts}" if opts else question
-
-    elif question_format in ("metacognitive-open", "metacognitive-analysis"):
-        system = (
-            "You are a dental medicine specialist. "
-            "Respond using bullet points only. Each bullet is one key point. "
-            "Include your confidence level (0-100%) as the first bullet. "
-            "Identify uncertainties and knowledge gaps as separate bullets. "
-            "Do NOT write paragraphs. Do NOT include reasoning process. Only output conclusions as bullet points."
-        )
-        user = question
-
-    else:  # open-ended
-        system = (
-            "You are a dental medicine specialist. "
-            "Respond using bullet points only. Each bullet is one key point or conclusion. "
-            "Do NOT write paragraphs or essays. Do NOT include your reasoning process. "
-            "Only output factual conclusions and clinical recommendations as a bullet list."
-        )
-        user = question
-
-    return system, user
+    return build_baseline_prompts(question, question_format, options)
 
 
 # ── Batch inference (standalone function, not a CrewAI tool) ───────────────
@@ -211,6 +187,7 @@ def batch_inference(
         Dict mapping model_name -> list of result dicts.
     """
     config = _load_config()
+    items_by_id = {item.get("question_id", ""): item for item in items}
     if models is None:
         models = [m["name"] for m in config.get("models", [])]
 
@@ -239,7 +216,7 @@ def batch_inference(
                     question=item.get("question", ""),
                     model_name=model_name,
                     question_format=item.get("question_format", "open-ended"),
-                    options=json.dumps(item.get("options", [])) if item.get("options") else "",
+                    options=item.get("options", []),
                     base_url=base_url,
                     question_id=item.get("question_id", ""),
                 )
@@ -289,7 +266,7 @@ def batch_inference(
                         question=item.get("question", ""),
                         model_name=mname,
                         question_format=item.get("question_format", "open-ended"),
-                        options=json.dumps(item.get("options", [])) if item.get("options") else "",
+                        options=item.get("options", []),
                         base_url=base_url,
                         question_id=item.get("question_id", ""),
                         max_retries=10,
@@ -334,13 +311,19 @@ def batch_inference(
         evals_path = os.path.join(evals_dir, f"{safe_name}.jsonl")
         with open(evals_path, "w", encoding="utf-8") as f:
             for r in model_results:
+                source_item = items_by_id[r.get("question_id", "")]
+                system, user = _build_prompts(
+                    source_item["question"], "", source_item.get("options", []),
+                )
                 line = {
                     "input": [
-                        {"role": "user", "content": r.get("question_id", "")},
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
                     ],
                     "ideal": "",
                     "output": r.get("response", ""),
                     "metadata": {
+                        "generation_protocol": PROTOCOL_VERSION,
                         "question_id": r.get("question_id", ""),
                         "model": model_name,
                         "finish_reason": r.get("finish_reason", ""),

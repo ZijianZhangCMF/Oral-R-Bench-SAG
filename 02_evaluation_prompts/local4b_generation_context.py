@@ -1,5 +1,11 @@
-def context(item,format_req=True):
- out={k:item[k] for k in ['question_id','level','question_format','question']}
- if format_req:
-  out['format_requirement']='First bullet: confidence 0-100%. Cover uncertainty and limitations; preserve all explicit tasks.' if item['level']=='L4' else 'Use 6-12 concise bullets and cover the complete clinical decision sequence.' if item['level']=='L3' else 'Use enough concise bullets to cover every explicit task, normally 4-10 bullets.'
- return out
+"""Shared input for both local generation arms; metadata remains local."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from generation_protocol import generation_context
+
+
+def context(item, format_req=True):
+    # Keep the legacy argument for callers; it never changes the model input.
+    return generation_context(item)
