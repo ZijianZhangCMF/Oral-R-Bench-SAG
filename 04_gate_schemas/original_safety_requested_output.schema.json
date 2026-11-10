@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "safe",
+        "needs_revision"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "critical_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6
+    },
+    "must_fix": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6
+    },
+    "do_not_add": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    }
+  },
+  "required": [
+    "verdict",
+    "risk_level",
+    "critical_risks",
+    "must_fix",
+    "do_not_add",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "description": "Declarative documentation of the original prompt request. The original API did not receive this JSON Schema; actual normalization is in sag_stage_functions.py."
+}

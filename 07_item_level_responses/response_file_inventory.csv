@@ -1,0 +1,25 @@
+﻿file,cohort,records,nonempty_responses,empty_response_slots
+07_item_level_responses/original_oralbench/Baichuan-M2-32B.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/HuatuoGPT-o1-7B.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/claude-sonnet-4-6.jsonl,Original OralBench,2805,2804,1
+07_item_level_responses/original_oralbench/deepseek-v3.2.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/doubao-seed-1-6-250615.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/gemini-3-pro-preview.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/gemma4_e4b.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/glm-4.7.jsonl,Original OralBench,2805,2790,15
+07_item_level_responses/original_oralbench/gpt-5.4.jsonl,Original OralBench,2805,2799,6
+07_item_level_responses/original_oralbench/grok-4.jsonl,Original OralBench,2805,2804,1
+07_item_level_responses/original_oralbench/kimi-k2.5.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/llama-3-8b.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/llama-3.1-70b-instruct.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/llama-3.3-70b-instruct.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/medllama2.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/meta-llama_llama-4-maverick.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/mistral-small-latest.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/qwen3-235b-a22b-thinking-2507.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/qwen3-8b.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/qwen3.5-27b.jsonl,Original OralBench,2805,2805,0
+07_item_level_responses/original_oralbench/qwen3.6-plus.jsonl,Original OralBench,2805,2800,5
+07_item_level_responses/original_oralsag/qwen3.5-27b_sag.jsonl,Original Oral-SAG,1713,1713,0
+07_item_level_responses/local4b/baseline.jsonl,Supplementary local 4B,317,317,0
+07_item_level_responses/local4b/sag.jsonl,Supplementary local 4B,317,307,10

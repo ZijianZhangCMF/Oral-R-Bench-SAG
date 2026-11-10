@@ -1,0 +1,23 @@
+{
+  "common_system_prompt": "../06_scoring_rubrics/Rubric_Matrix_v3.txt",
+  "common_user_wrapper": "../06_scoring_rubrics/rubric_parser_and_prompt_builder.py::build_prompt",
+  "shared_module_input": {
+    "question_id": "supplied qid",
+    "question": "first 800 characters",
+    "knowledge_type": "item metadata",
+    "dimension": "item metadata",
+    "question_format": "item metadata",
+    "reference_answer": "first 1200 characters",
+    "model_response": "first 1200 characters"
+  },
+  "original_sag_input": {
+    "question_id": "supplied qid",
+    "question": "see exact builder excerpt",
+    "knowledge_type": "item metadata",
+    "dimension": "item metadata",
+    "question_format": "item metadata",
+    "reference_answer": "first 4000 characters",
+    "model_response": "first 5000 characters"
+  },
+  "historical_binding": "Original 21-model score metadata identifies GPT-5.4 and rubric_matrix_v3, but the exact full-run launcher/overrides are not uniquely recovered. The shared-module truncation defaults are code evidence, not a verified per-request baseline setting."
+}

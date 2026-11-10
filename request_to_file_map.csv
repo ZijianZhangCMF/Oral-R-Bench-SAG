@@ -1,0 +1,8 @@
+﻿reviewer_request,location,scope
+Benchmark construction procedures,01_construction,"procedures, generation/review code and required instructions; no raw source or benchmark records"
+Exact evaluation prompts,02_evaluation_prompts; 06_scoring_rubrics,system templates and user builders; historical baseline invocation gaps explicitly documented
+Oral-SAG role instructions,03_OralSAG_roles,final effective v3 roles and information-flow functions
+Safety-gate schemas,04_gate_schemas,original requested JSON versus later enforced local schemas
+"Model configurations, versions, inference/context limits and condition differences",05_model_configurations,"recorded identifiers/configuration, code defaults and unknown values distinguished"
+Scoring rubrics,06_scoring_rubrics,"rubric, parsing and score transformation definitions; no realized ratings"
+Item-level results,07_item_level_responses,model responses only; no numerical score records or clinician ratings; coverage limitations listed

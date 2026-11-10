@@ -1,0 +1,39 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "num_ctx": 8192,
+  "num_predict": 2048,
+  "think": false,
+  "temperature": 0,
+  "top_p": 1.0,
+  "top_k": 40,
+  "repeat_penalty": 1.0,
+  "presence_penalty": 0,
+  "concurrency": 1,
+  "max_attempts": 2,
+  "timeout_seconds": 300,
+  "stage_order": [
+    "decision_draft",
+    "safety_gate",
+    "completeness_gate",
+    "final_decision"
+  ],
+  "failure_policy": "Record all attempts; no cap expansion for individual formal items. Retry once for transient error or invalid gate JSON. Length truncation is a recorded failure without retry. Failed arms have no fabricated score; report completion and analyze available pairs plus failure counts.",
+  "gate_output_format": "JSON schema constrained decoding for existing frozen prompt fields and types, with maxItems matching the original gate normalization limits",
+  "model_manifest_sha256": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "frozen_at": "2026-11-04T22:06:33.635764+08:00",
+  "judge": {
+    "model": "gemini-3-pro-preview",
+    "rubric": "OralBench Rubric Matrix v3",
+    "max_tokens": 4096,
+    "temperature": 0,
+    "max_attempts": 3,
+    "concurrency": 6,
+    "timeout_seconds": 180,
+    "accepted_returned_models": [
+      "gemini-3-pro-preview"
+    ],
+    "frozen_at": "2026-11-04T22:47:09.623294+08:00"
+  },
+  "evidence_level": "Frozen configuration and formal local request records; later Gemini judge amendment supersedes original protocol judge field",
+  "generation_metadata": "Identical question, stage and formatting metadata for both conditions; no D1-D10 labels, reference answers or external tools"
+}

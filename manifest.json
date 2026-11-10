@@ -1,0 +1,456 @@
+{
+  "package": "OralBench_R1.10_requested_materials_v001",
+  "created_at": "2026-11-07",
+  "files": [
+    {
+      "path": "01_construction/code/environment/archived_dependencies.toml",
+      "bytes": 574,
+      "sha256": "6e17a247250916292831aa3f5bced8f5738bf2c7fa86995d279b29678a9e9444"
+    },
+    {
+      "path": "01_construction/code/environment/archived_uv.lock",
+      "bytes": 920159,
+      "sha256": "6bed96fd7865536404c261d054e02fd8049255354bd943e407bf5d3bc18c6d6d"
+    },
+    {
+      "path": "01_construction/code/run_phase1_extract.py",
+      "bytes": 6601,
+      "sha256": "c5f9dbce648e0b5a49971f8ae62f5788a50a59773ad25be9cea54aea3a8a0a6c"
+    },
+    {
+      "path": "01_construction/code/run_phase2_full.py",
+      "bytes": 18381,
+      "sha256": "22b972cfd2f3320c16239a86104613c5cb7c49da4896a17ba8acff7b0ac45bb9"
+    },
+    {
+      "path": "01_construction/code/run_pubmed_retrieval.py",
+      "bytes": 14379,
+      "sha256": "21837a97622a4bc6de015f998f892bab2c516310b689a4dd170a2d091fabeec1"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/data_acquisition/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/data_acquisition/data_acquisition_crew.py",
+      "bytes": 4276,
+      "sha256": "f576330fe0c9fb79b10b24d4e4a3884528bd42f4e752de427620cfa2158be85e"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/qa_generation/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/qa_generation/generation_crew.py",
+      "bytes": 9000,
+      "sha256": "42a2bb121f4bb0e915c17f3fcc3ec5385411791292e2b89d1002984acabdd13b"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/crews/qa_generation/review_crew.py",
+      "bytes": 4844,
+      "sha256": "3564035a909631fab1683bab55aa27e85988663187bea874f7c1b59095e29510"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/schemas/__init__.py",
+      "bytes": 1013,
+      "sha256": "0e350029fce64f9ace85315171a8283b352edc72b6eb4b780549259d222a5366"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/schemas/qa_item.py",
+      "bytes": 8152,
+      "sha256": "4f34ace614e19ff166a2185eb93e8f2002ea157772680f5d76bb678a8f835fb3"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/case-report-extraction/SKILL.md",
+      "bytes": 5292,
+      "sha256": "57f430fc5cc373b50703260d193ccd0ac9768279686076621ecbd465839e7f42"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/deduplication/SKILL.md",
+      "bytes": 5242,
+      "sha256": "62aa6642bab86b9a8a5bbbc7834dbda4c9e79da22f668d89710e6acc87b9f13b"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/difficulty-calibration/SKILL.md",
+      "bytes": 8172,
+      "sha256": "a6c86b2b7c1123b0a46ce00977b8c8377de141c612574c5f41fe9cbac4465301"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/exam-parsing/SKILL.md",
+      "bytes": 6148,
+      "sha256": "518ecdb671216094f5ed445cf0b75722c1980b964029b405e355864deeafe1ff"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/factuality-review/SKILL.md",
+      "bytes": 6847,
+      "sha256": "c74a53d1e277c87a45c8631e0bee18b1e72344b64c9f1e3f6977fefb8c36c35e"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/format-validation/SKILL.md",
+      "bytes": 7546,
+      "sha256": "c579f26c45cd1dfde8b406db0e5480f6cb20e43814ec8a29a0667711134834ce"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/oral-medicine-taxonomy/SKILL.md",
+      "bytes": 6426,
+      "sha256": "c20d41a42608a2eb0e02b2bd9644520f4cac5748ffa2754b57c5ea3d3ca05c68"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/oral-medicine-taxonomy/references/taxonomy.md",
+      "bytes": 15439,
+      "sha256": "f34befe20db7bde50a17aa36c2801ffd82e6743db431b0be609d8a3d8a7de85d"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/pdf-extraction/SKILL.md",
+      "bytes": 5108,
+      "sha256": "4d9fa4c759d1727a18603ff03e6645d3249abbd7e6e03f4f5727b3ab01f3e791"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/pubmed-search/SKILL.md",
+      "bytes": 4017,
+      "sha256": "6a2c4cbca8524964165617dbf21f74185b5ff2a4e4951dff0015453157d7a683"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/pubmed-search/references/mesh-terms.md",
+      "bytes": 6778,
+      "sha256": "02cb051047e054331a9f8df3c299cb272fbf21cf195054b5c60c0a49c7c4dccf"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/qa-conceptual/SKILL.md",
+      "bytes": 12795,
+      "sha256": "1a719713c3c2d8a7b6b0d222a7d0fadbce34b3cae947418a0791412d78426539"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/qa-factual/SKILL.md",
+      "bytes": 10726,
+      "sha256": "d761b80ee959aa6d8ac090c5fa516750ab44d25e38d72376172477e43de26645"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/qa-metacognitive/SKILL.md",
+      "bytes": 19912,
+      "sha256": "af9539e6490912826ea078307486d060fd985d92d73df50dccade89da7c67880"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/qa-procedural/SKILL.md",
+      "bytes": 13434,
+      "sha256": "706430057e488f273c8d900030679fd056089af337c4156d587c19a3ef6a7637"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/skills/web-research-medical/SKILL.md",
+      "bytes": 5041,
+      "sha256": "95d25ff359cb2b3a63ab287d97c11f6232aa7f6df27391085922cf506839ad86"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/tools/__init__.py",
+      "bytes": 371,
+      "sha256": "4ada78e3ee1f6b97d1ffa1dee2cf167316572bcc8e841c4aa0db70ed53caf2d7"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/tools/docx_parser_tool.py",
+      "bytes": 2548,
+      "sha256": "44e946975f3f74fa65ba29c4fcbe6fcae5c0c946ac18cf2b5f8011476b558917"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/tools/embedding_similarity_tool.py",
+      "bytes": 2534,
+      "sha256": "df12f23e84e21c7c0bfd98399aaffd1086bd3e709c49aafd9809d46b12307257"
+    },
+    {
+      "path": "01_construction/code/src/dentalbench/tools/pubmed_search_tool.py",
+      "bytes": 4038,
+      "sha256": "44640c9fea92227b7beff2eb2be118989880d538539984e8db268b1153283fca"
+    },
+    {
+      "path": "01_construction/procedures.md",
+      "bytes": 2302,
+      "sha256": "2bc19db31ed648d7ae0b7c22b2806f7419d1c4f6a388ea61ab4b3fc50063f834"
+    },
+    {
+      "path": "02_evaluation_prompts/README.md",
+      "bytes": 958,
+      "sha256": "7d95361ce3e67263718de0cb376af80d15139e0a5ff86ea40f4431f73ccfef24"
+    },
+    {
+      "path": "02_evaluation_prompts/archived_baseline_client.py",
+      "bytes": 16181,
+      "sha256": "0faba299f79c69312d9f00727d106cd856e8da6002f26ffcede7dbc1d44a188e"
+    },
+    {
+      "path": "02_evaluation_prompts/baseline_prompt_builder.py",
+      "bytes": 1726,
+      "sha256": "0fa862fc687625224afc6372542a7062e7b4f75f3ee88ac36d5ea36510afbcd6"
+    },
+    {
+      "path": "02_evaluation_prompts/baseline_templates.json",
+      "bytes": 1639,
+      "sha256": "2ad0beb3b6c132ae7f97f9b545e776e4f4d9ea8314455b1c00c52332cb32b012"
+    },
+    {
+      "path": "02_evaluation_prompts/judge_input_fields.json",
+      "bytes": 1082,
+      "sha256": "90bf93ac55ed32994a696e08b883afd556a8281d91be909600cdb01e657703f9"
+    },
+    {
+      "path": "02_evaluation_prompts/local4b_baseline_templates.json",
+      "bytes": 651,
+      "sha256": "0818f383fb1ceb8b84fea2d7cfc834bf8f954eb2855055ff6b5594c392bd5452"
+    },
+    {
+      "path": "02_evaluation_prompts/local4b_generation_context.py",
+      "bytes": 485,
+      "sha256": "1570999d17ced75d3c3c8eeeb4b9e43747952b8c45d70a5e97aab65e6653c584"
+    },
+    {
+      "path": "02_evaluation_prompts/local4b_judge_builder.py",
+      "bytes": 641,
+      "sha256": "68a211cf89f406b928ed57c4c79add3fbe9ac1db032eac119291e32bcf1f2bfd"
+    },
+    {
+      "path": "02_evaluation_prompts/original_sag_judge_builder_excerpt.py",
+      "bytes": 950,
+      "sha256": "bdc85ac6ecf1aad22b0b10eef12bd84572672af451c9b51f2f021dfee306f757"
+    },
+    {
+      "path": "03_OralSAG_roles/effective_v3_instructions.json",
+      "bytes": 3779,
+      "sha256": "630fd9e598ea65d5236ee484127b07ad8ffffd397fe31d99e2313882928fbf12"
+    },
+    {
+      "path": "03_OralSAG_roles/sag_stage_functions.py",
+      "bytes": 11968,
+      "sha256": "86aa2591a508cede94fdf26a710fed44d64996de8fb92d48fe3468fef1623490"
+    },
+    {
+      "path": "03_OralSAG_roles/workflow.md",
+      "bytes": 1722,
+      "sha256": "c67b84643f7423429762c4d4619c9bce49d6fcec0a471adc8ced6b4b4c229f55"
+    },
+    {
+      "path": "04_gate_schemas/README.md",
+      "bytes": 891,
+      "sha256": "fe4ce90d6abafca17775d5762f0fdc7950213355853a650be91a65f8d82765f2"
+    },
+    {
+      "path": "04_gate_schemas/local4b_completeness_gate.schema.json",
+      "bytes": 1449,
+      "sha256": "b34a6cc00ce19a824010f896d04f0a59da9181a6c46998ac4de208125f7b1b18"
+    },
+    {
+      "path": "04_gate_schemas/local4b_gate_functions.py",
+      "bytes": 1873,
+      "sha256": "658d0da466fe5238e6505ee3f474d1a065a5ac715d76aacd0e130d93d4fc97c9"
+    },
+    {
+      "path": "04_gate_schemas/local4b_safety_gate.schema.json",
+      "bytes": 931,
+      "sha256": "56a35b18429a7dc3075a443e128b00848acf273638a9c10e4b841ac5bbb75e92"
+    },
+    {
+      "path": "04_gate_schemas/original_completeness_requested_output.schema.json",
+      "bytes": 1610,
+      "sha256": "867dec72cd343fabcdbcf79839b39967a24807fc1544a05ddb1ccea4e66454f2"
+    },
+    {
+      "path": "04_gate_schemas/original_safety_requested_output.schema.json",
+      "bytes": 1111,
+      "sha256": "173800be6e1c89fae7e0e069ae00bdfc6424ab9e158a61dd4286c35cd73b3c31"
+    },
+    {
+      "path": "05_model_configurations/conditions.md",
+      "bytes": 1903,
+      "sha256": "bba0a4d15b1df32477b2ce159a683767e085eb5dd4b6a21f739d804fe96045ec"
+    },
+    {
+      "path": "05_model_configurations/local4b.json",
+      "bytes": 1631,
+      "sha256": "1443ce91594dff57af2381e444e89da1f1b6dfbd28c441966fa2494393991b68"
+    },
+    {
+      "path": "05_model_configurations/local4b_model_metadata.json",
+      "bytes": 2464,
+      "sha256": "900aeb29bf5e54d330cdbca8fbeefb3d6a6490326a89e9084dd14c9b7cf40a20"
+    },
+    {
+      "path": "05_model_configurations/original_21_models.csv",
+      "bytes": 16949,
+      "sha256": "f92ab0b6a2b418cd0a2d618f8c53aa2afabf846c0fa314cd9ee3334efbbc5496"
+    },
+    {
+      "path": "05_model_configurations/original_sag.json",
+      "bytes": 995,
+      "sha256": "14a0402c797cb48c38cdca4792ff3dde317ac9007da6775265661a477236717c"
+    },
+    {
+      "path": "06_scoring_rubrics/Rubric_Matrix_v3.txt",
+      "bytes": 5357,
+      "sha256": "c42b9c0fea7291811473f36149b19bfdd4268b823fce799127e28daaa08920e2"
+    },
+    {
+      "path": "06_scoring_rubrics/rubric_parser_and_prompt_builder.py",
+      "bytes": 3922,
+      "sha256": "a8538ab08f7c60505c578aa039f24150541c401d00b23d47c62376f6f68535e3"
+    },
+    {
+      "path": "06_scoring_rubrics/scoring_rules.md",
+      "bytes": 1089,
+      "sha256": "bb8d3fb55793216f03a95c1e8dc9d952d24d376c3fe81bbe4b3440c39cfffc70"
+    },
+    {
+      "path": "07_item_level_responses/README.md",
+      "bytes": 1642,
+      "sha256": "806cce5d9d46562bd71bc89e8f66537c36af04ce38b3dfb63ff72a731d544dfd"
+    },
+    {
+      "path": "07_item_level_responses/local4b/baseline.jsonl",
+      "bytes": 502595,
+      "sha256": "528942e692323a9d4ca17a535894e7b988cd8be2548d8c2d6a2c0ca331cff62b"
+    },
+    {
+      "path": "07_item_level_responses/local4b/sag.jsonl",
+      "bytes": 590556,
+      "sha256": "c1ddb2e7b008562c9b63df97a62dab68063e43122b276b508725b7debcceb587"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/Baichuan-M2-32B.jsonl",
+      "bytes": 4484802,
+      "sha256": "ba7798be23f993a0689d2a8c2a060dd4573cc4938a91b364bdc14f38e7962924"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/HuatuoGPT-o1-7B.jsonl",
+      "bytes": 2129737,
+      "sha256": "a37a5cdb117c5cf73acd89c80d968f0c52cdad04fc4046a8f72ab4d5e1fe127c"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/claude-sonnet-4-6.jsonl",
+      "bytes": 3333988,
+      "sha256": "1bb4a21f717646e7caf2031b0a6a9507076ccc871b0fe7bc2a7005111cb53407"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/deepseek-v3.2.jsonl",
+      "bytes": 2003238,
+      "sha256": "dcdee15c41294916ca76050956c966e4df7f05fcbb3ea37f8d47f6f0bee54b47"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/doubao-seed-1-6-250615.jsonl",
+      "bytes": 1671028,
+      "sha256": "4010b05afe33de99622184888b5e55e2540c9dd75069994f28ee15166e372fc7"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/gemini-3-pro-preview.jsonl",
+      "bytes": 3266225,
+      "sha256": "8cdc12dbe644aa9097eb7e193b84b06f2dc220236a52dca65570a11bc82d9142"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/gemma4_e4b.jsonl",
+      "bytes": 3082146,
+      "sha256": "95fd3584d9ee69e1685d206449b18b45ed505b0d5fb747df66bb7824b9e30f28"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/glm-4.7.jsonl",
+      "bytes": 2657424,
+      "sha256": "18ab3ffd045c50ecce72796a3f5cac68b776dcdde8481d3b57da5ad95a516fb0"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/gpt-5.4.jsonl",
+      "bytes": 7290619,
+      "sha256": "34ec68124cdba3fd49c2563d716fb8cd6d5abc04759aaf70229640fc986fc76b"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/grok-4.jsonl",
+      "bytes": 2302323,
+      "sha256": "3211a8db737cf98f5d56b50d3cb47855669a4538e09114c8be0fc3bd95462275"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/kimi-k2.5.jsonl",
+      "bytes": 2743066,
+      "sha256": "b21c6ee29847eb9c246c5113810d55390f9170b2e547888ecd2a7d1cb1c3c68a"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/llama-3-8b.jsonl",
+      "bytes": 1567846,
+      "sha256": "a076dff3b7bb0ef998bd448606a4700dc25dab8ad3a3c2c90246056de9c00159"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/llama-3.1-70b-instruct.jsonl",
+      "bytes": 1775380,
+      "sha256": "3a13ec83c86b4c38055bc8ecbc69459bbb4eca225da56df4eae201ee932f3225"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/llama-3.3-70b-instruct.jsonl",
+      "bytes": 2032235,
+      "sha256": "8c7f2485f075b8eec8f3cbe294f01e055d8df59525f924b21e972486378034a1"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/medllama2.jsonl",
+      "bytes": 1788632,
+      "sha256": "b4011343159e375b9dfd56ea13832d0040b5c7313ef09e0c68ec72343999c2e6"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/meta-llama_llama-4-maverick.jsonl",
+      "bytes": 1960907,
+      "sha256": "3b075218836b42badf9a8b262c9a52108b978adcaa4c6ed1bcc74be1457e3adc"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/mistral-small-latest.jsonl",
+      "bytes": 1764771,
+      "sha256": "41949292f260d559ba92f1cb99a6d2b19fd56e3c901cbef53111227f83bcbee0"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/qwen3-235b-a22b-thinking-2507.jsonl",
+      "bytes": 2839351,
+      "sha256": "cefdaa4b4300d5dffe4ac4d0d160e89cb40575f257de4c4442e83e4240fcbf94"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/qwen3-8b.jsonl",
+      "bytes": 1315270,
+      "sha256": "7ba3b2d5acbb7fad6496bffe052a50f524b9916795afd220447950c98b13e9ed"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/qwen3.5-27b.jsonl",
+      "bytes": 2338903,
+      "sha256": "860591567673e907acddaec8c2ada7a1602cd94c8d7530f6e52399a2fbf85b40"
+    },
+    {
+      "path": "07_item_level_responses/original_oralbench/qwen3.6-plus.jsonl",
+      "bytes": 3054969,
+      "sha256": "45a6e3c1adf602c0232c286d324688606cd318d84d9a296f51725c189f9fb4ea"
+    },
+    {
+      "path": "07_item_level_responses/original_oralsag/qwen3.5-27b_sag.jsonl",
+      "bytes": 2281363,
+      "sha256": "4b8441ebba1217a192723d11554d1cd3379ab5a3f306938cd8d2e73fc747be6f"
+    },
+    {
+      "path": "07_item_level_responses/response_file_inventory.csv",
+      "bytes": 2350,
+      "sha256": "583af191e97bb28aa9b9967d0670b639baa9c138e8415e476bd101a22e0727f3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1553,
+      "sha256": "424e80e33c01ca2f094f3cdf571d9ec5ca0cd4e090a9ee897f027abcd451d4ba"
+    },
+    {
+      "path": "code_provenance.csv",
+      "bytes": 10747,
+      "sha256": "aa43ecf25ee835f580f88e4a9edc21cb09a7c795537d721975f5a771d2a5c714"
+    },
+    {
+      "path": "request_to_file_map.csv",
+      "bytes": 996,
+      "sha256": "d2d444d6e2eb2cb1b68d4dfd531f7daa32f1003920993983aed69de1f066e407"
+    }
+  ]
+}

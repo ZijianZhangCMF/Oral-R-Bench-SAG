@@ -1,0 +1,24 @@
+{
+  "experiment": "sag_qwen35_27b_full1713_v3_completeness",
+  "model": "qwen3.5-27b",
+  "provider": "Yungpt-compatible API",
+  "base_url": "https://yungpt.com/v1",
+  "metadata_created_at": "2026-08-10 22:56:13",
+  "external_retrieval": false,
+  "reference_answer_exposure": "none during generation; reference used in later scoring",
+  "temperature_code": 0,
+  "top_p": "not explicitly set in archived SAG transport",
+  "seed": "not explicitly set in archived SAG transport",
+  "context_limit": "not recorded",
+  "output_caps_from_code": {
+    "decision_draft": 1200,
+    "safety_gate": 900,
+    "completeness_gate": 900,
+    "final_decision": 1400
+  },
+  "backend_snapshot": "not recorded",
+  "inference_mode": "no reasoning/thinking switch explicitly set in archived SAG transport",
+  "transport_attempt_limit": 6,
+  "content_or_gate_attempt_limit": 2,
+  "evidence_level": "run metadata for model/no-retrieval; source code for request defaults; no per-request full request capture retained"
+}
